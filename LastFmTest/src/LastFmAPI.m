@@ -17,7 +17,15 @@ static NSString *const BASE_URL = @"http://ws.audioscrobbler.com/2.0/?method=%@&
 
 #pragma mark - private method
 
-+ (NSURL *)getURL:(NSString *)method :(NSString *)parameter 
++ (void)degugOut:(id)obj 
+{
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    writer.humanReadable = YES;
+    writer.sortKeys = YES;
+    NSLog(@"%@", [writer stringWithObject:obj]);
+}
+
++ (NSURL *)createURL:(NSString *)method :(NSString *)parameter 
 {
     NSString *api = [NSString stringWithFormat:BASE_URL, method, API_KEY, parameter];
     return [NSURL URLWithString:api];
@@ -47,19 +55,11 @@ static NSString *const BASE_URL = @"http://ws.audioscrobbler.com/2.0/?method=%@&
 
 #pragma mark - public method
 
-+ (void)degugOut:(id)obj 
-{
-    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    writer.humanReadable = YES;
-    writer.sortKeys = YES;
-    NSLog(@"%@", [writer stringWithObject:obj]);
-}
-
 + (NSArray *)searchArtists:(NSString*)keyword 
 {
     NSString *escapeStr = [self percentEscape:keyword];
     NSString *searchParameter = [NSString stringWithFormat:@"&artist=%@", escapeStr];
-    NSURL *url = [self getURL:@"artist.search" :searchParameter];
+    NSURL *url = [self createURL:@"artist.search" :searchParameter];
     NSDictionary *jsonData = [self requestTo:url];
     if (!jsonData) {
         return nil;
@@ -91,7 +91,7 @@ static NSString *const BASE_URL = @"http://ws.audioscrobbler.com/2.0/?method=%@&
 {
     NSString *escapeStr = [self percentEscape:artistName];
     NSString *searchParameter = [NSString stringWithFormat:@"&artist=%@", escapeStr];
-    NSURL *url = [self getURL:@"artist.getevents" :searchParameter];
+    NSURL *url = [self createURL:@"artist.getevents" :searchParameter];
     NSDictionary *jsonData = [self requestTo:url];
     if (!jsonData) {
         return nil;

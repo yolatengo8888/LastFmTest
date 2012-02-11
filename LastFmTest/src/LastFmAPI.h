@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface LastFmAPI : NSObject
-+ (void) degugOut:(id)obj;
 + (NSArray *)searchArtists:(NSString*)keyword;
 + (NSArray *)searchEvents:(NSString*)artistName;
 @end

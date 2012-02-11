@@ -113,15 +113,6 @@
     [self.navigationController pushViewController:self.detailViewController animated:YES];
 }
 
-- (void)searchArtists:(NSString *)keyword 
-{
-    artists_ = [LastFmAPI searchArtists:keyword];
-    UITableView *tableView = (UITableView *)self.view;
-    [tableView reloadData];
-    
-    [UIApplication showIndicator:NO];
-}
-
 #pragma mark - Search Bar
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar 
@@ -135,6 +126,15 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar 
 {
     [searchBar resignFirstResponder]; 
+}
+
+- (void)searchArtists:(NSString *)keyword 
+{
+    artists_ = [LastFmAPI searchArtists:keyword];
+    UITableView *tableView = (UITableView *)self.view;
+    [tableView reloadData];
+    
+    [UIApplication showIndicator:NO];
 }
 
 @end
