@@ -17,7 +17,7 @@ static NSString *const BASE_URL = @"http://ws.audioscrobbler.com/2.0/?method=%@&
 
 #pragma mark - private method
 
-+ (void)degugOut:(id)obj 
++ (void)debugOut:(id)obj 
 {
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
     writer.humanReadable = YES;
