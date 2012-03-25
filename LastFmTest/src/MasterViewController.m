@@ -8,13 +8,11 @@
 
 #import "UIApplication+Shortening.h"
 #import "MasterViewController.h"
-#import "DetailViewController.h"
+#import "EventViewController.h"
 #import "LastFmAPI.h"
 #import "ArtistInfo.h"
 
 @implementation MasterViewController
-
-@synthesize detailViewController = _detailViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,37 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    artists_ = nil;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    _artists = nil;
 }
 
 #pragma mark - TableView
@@ -77,14 +45,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (!artists_) {
+    if (!_artists) {
         return 0;
     }
 
-    return [artists_ count];
+    return [_artists count];
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -95,22 +62,19 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
-    // Configure the cell.
-    ArtistInfo* artistInfo = [artists_ objectAtIndex:indexPath.row];
+    ArtistInfo* artistInfo = [_artists objectAtIndex:indexPath.row];
     cell.textLabel.text = artistInfo.name;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ArtistInfo* artistInfo = [artists_ objectAtIndex:indexPath.row];
+    ArtistInfo* artistInfo = [_artists objectAtIndex:indexPath.row];
 
-    if (!self.detailViewController) {
-        self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    }
-    self.detailViewController.artistInfo = artistInfo;
+    EventViewController *eventViewController = [[EventViewController alloc] initWithNibName:@"EventViewController" bundle:nil];
+    eventViewController.artistInfo = artistInfo;
 
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
+    [self.navigationController pushViewController:eventViewController animated:YES];
 }
 
 #pragma mark - Search Bar
@@ -130,7 +94,8 @@
 
 - (void)searchArtists:(NSString *)keyword 
 {
-    artists_ = [LastFmAPI searchArtists:keyword];
+    _artists = [LastFmAPI searchArtists:keyword];
+
     UITableView *tableView = (UITableView *)self.view;
     [tableView reloadData];
     

@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class DetailViewController;
+@class EventViewController;
 
 @interface MasterViewController : UITableViewController  <UISearchBarDelegate> {
 @private
-    NSArray *artists_;
+    NSArray *_artists;
 }
-
-@property (strong, nonatomic) DetailViewController *detailViewController;
 
 @end

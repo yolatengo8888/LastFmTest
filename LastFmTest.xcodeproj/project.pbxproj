@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE2E2957150E193E00D4C7D9 /* EventInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2E2956150E193E00D4C7D9 /* EventInfo.m */; };
+		DE2E295B150E233E00D4C7D9 /* InfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2E295A150E233E00D4C7D9 /* InfoHelper.m */; };
+		DE4342B7151EEBF700AB5399 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4342B6151EEBF700AB5399 /* Twitter.framework */; };
 		DE86494714E6401D00328A9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE86494614E6401D00328A9A /* UIKit.framework */; };
 		DE86494914E6401D00328A9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE86494814E6401D00328A9A /* Foundation.framework */; };
 		DE86494B14E6401D00328A9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE86494A14E6401D00328A9A /* CoreGraphics.framework */; };
@@ -27,15 +30,20 @@
 		DE8649D514E6449400328A9A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8649C914E6449400328A9A /* SBJsonWriter.m */; };
 		DE8649E414E644E400328A9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8649D714E644E400328A9A /* AppDelegate.m */; };
 		DE8649E514E644E400328A9A /* ArtistInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8649D914E644E400328A9A /* ArtistInfo.m */; };
-		DE8649E614E644E400328A9A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8649DB14E644E400328A9A /* DetailViewController.m */; };
-		DE8649E714E644E400328A9A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE8649DC14E644E400328A9A /* DetailViewController.xib */; };
 		DE8649E814E644E400328A9A /* LastFmAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8649DE14E644E400328A9A /* LastFmAPI.m */; };
 		DE8649E914E644E400328A9A /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8649E014E644E400328A9A /* MasterViewController.m */; };
 		DE8649EA14E644E400328A9A /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE8649E114E644E400328A9A /* MasterViewController.xib */; };
 		DE8649EB14E644E400328A9A /* UIApplication+Shortening.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8649E314E644E400328A9A /* UIApplication+Shortening.m */; };
+		DE954C2414EE87AE004FE7FC /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE954C2214EE87AE004FE7FC /* EventViewController.m */; };
+		DE954C2514EE87AE004FE7FC /* EventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE954C2314EE87AE004FE7FC /* EventViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE2E2955150E193E00D4C7D9 /* EventInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventInfo.h; path = src/EventInfo.h; sourceTree = "<group>"; };
+		DE2E2956150E193E00D4C7D9 /* EventInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventInfo.m; path = src/EventInfo.m; sourceTree = "<group>"; };
+		DE2E2959150E233E00D4C7D9 /* InfoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoHelper.h; path = src/InfoHelper.h; sourceTree = "<group>"; };
+		DE2E295A150E233E00D4C7D9 /* InfoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoHelper.m; path = src/InfoHelper.m; sourceTree = "<group>"; };
+		DE4342B6151EEBF700AB5399 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		DE86494214E6401D00328A9A /* LastFmTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LastFmTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE86494614E6401D00328A9A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DE86494814E6401D00328A9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -74,9 +82,6 @@
 		DE8649D714E644E400328A9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = src/AppDelegate.m; sourceTree = "<group>"; };
 		DE8649D814E644E400328A9A /* ArtistInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArtistInfo.h; path = src/ArtistInfo.h; sourceTree = "<group>"; };
 		DE8649D914E644E400328A9A /* ArtistInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArtistInfo.m; path = src/ArtistInfo.m; sourceTree = "<group>"; };
-		DE8649DA14E644E400328A9A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = src/DetailViewController.h; sourceTree = "<group>"; };
-		DE8649DB14E644E400328A9A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = src/DetailViewController.m; sourceTree = "<group>"; };
-		DE8649DC14E644E400328A9A /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailViewController.xib; path = src/DetailViewController.xib; sourceTree = "<group>"; };
 		DE8649DD14E644E400328A9A /* LastFmAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LastFmAPI.h; path = src/LastFmAPI.h; sourceTree = "<group>"; };
 		DE8649DE14E644E400328A9A /* LastFmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LastFmAPI.m; path = src/LastFmAPI.m; sourceTree = "<group>"; };
 		DE8649DF14E644E400328A9A /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterViewController.h; path = src/MasterViewController.h; sourceTree = "<group>"; };
@@ -84,6 +89,9 @@
 		DE8649E114E644E400328A9A /* MasterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MasterViewController.xib; path = src/MasterViewController.xib; sourceTree = "<group>"; };
 		DE8649E214E644E400328A9A /* UIApplication+Shortening.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+Shortening.h"; path = "src/UIApplication+Shortening.h"; sourceTree = "<group>"; };
 		DE8649E314E644E400328A9A /* UIApplication+Shortening.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+Shortening.m"; path = "src/UIApplication+Shortening.m"; sourceTree = "<group>"; };
+		DE954C2114EE87AE004FE7FC /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventViewController.h; path = src/EventViewController.h; sourceTree = "<group>"; };
+		DE954C2214EE87AE004FE7FC /* EventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventViewController.m; path = src/EventViewController.m; sourceTree = "<group>"; };
+		DE954C2314EE87AE004FE7FC /* EventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventViewController.xib; path = src/EventViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,19 +102,45 @@
 				DE86494714E6401D00328A9A /* UIKit.framework in Frameworks */,
 				DE86494914E6401D00328A9A /* Foundation.framework in Frameworks */,
 				DE86494B14E6401D00328A9A /* CoreGraphics.framework in Frameworks */,
+				DE4342B7151EEBF700AB5399 /* Twitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE4342B1151EB8A000AB5399 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				DE8649D814E644E400328A9A /* ArtistInfo.h */,
+				DE8649D914E644E400328A9A /* ArtistInfo.m */,
+				DE2E2955150E193E00D4C7D9 /* EventInfo.h */,
+				DE2E2956150E193E00D4C7D9 /* EventInfo.m */,
+				DE2E2959150E233E00D4C7D9 /* InfoHelper.h */,
+				DE2E295A150E233E00D4C7D9 /* InfoHelper.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		DE4342B2151EB8C000AB5399 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				DE8649DF14E644E400328A9A /* MasterViewController.h */,
+				DE8649E014E644E400328A9A /* MasterViewController.m */,
+				DE8649E114E644E400328A9A /* MasterViewController.xib */,
+				DE954C2114EE87AE004FE7FC /* EventViewController.h */,
+				DE954C2214EE87AE004FE7FC /* EventViewController.m */,
+				DE954C2314EE87AE004FE7FC /* EventViewController.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		DE86493714E6401D00328A9A = {
 			isa = PBXGroup;
 			children = (
 				DE86496A14E6403700328A9A /* image */,
 				DE86496914E6402C00328A9A /* SBJson */,
 				DE86494C14E6401D00328A9A /* LastFmTest */,
-				DE86494514E6401D00328A9A /* Frameworks */,
 				DE86494314E6401D00328A9A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,30 +156,27 @@
 		DE86494514E6401D00328A9A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE4342B6151EEBF700AB5399 /* Twitter.framework */,
 				DE86494614E6401D00328A9A /* UIKit.framework */,
 				DE86494814E6401D00328A9A /* Foundation.framework */,
 				DE86494A14E6401D00328A9A /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		DE86494C14E6401D00328A9A /* LastFmTest */ = {
 			isa = PBXGroup;
 			children = (
-				DE8649D814E644E400328A9A /* ArtistInfo.h */,
-				DE8649D914E644E400328A9A /* ArtistInfo.m */,
-				DE8649D614E644E400328A9A /* AppDelegate.h */,
-				DE8649D714E644E400328A9A /* AppDelegate.m */,
-				DE8649DF14E644E400328A9A /* MasterViewController.h */,
-				DE8649E014E644E400328A9A /* MasterViewController.m */,
-				DE8649E114E644E400328A9A /* MasterViewController.xib */,
-				DE8649DA14E644E400328A9A /* DetailViewController.h */,
-				DE8649DB14E644E400328A9A /* DetailViewController.m */,
-				DE8649DC14E644E400328A9A /* DetailViewController.xib */,
+				DE4342B2151EB8C000AB5399 /* view */,
+				DE4342B1151EB8A000AB5399 /* model */,
 				DE8649DD14E644E400328A9A /* LastFmAPI.h */,
 				DE8649DE14E644E400328A9A /* LastFmAPI.m */,
+				DE8649D614E644E400328A9A /* AppDelegate.h */,
+				DE8649D714E644E400328A9A /* AppDelegate.m */,
 				DE8649E214E644E400328A9A /* UIApplication+Shortening.h */,
 				DE8649E314E644E400328A9A /* UIApplication+Shortening.m */,
+				DE86494514E6401D00328A9A /* Frameworks */,
 				DE86494D14E6401D00328A9A /* Supporting Files */,
 			);
 			path = LastFmTest;
@@ -255,8 +286,8 @@
 			files = (
 				DE86495114E6401D00328A9A /* InfoPlist.strings in Resources */,
 				DE8649B014E6448100328A9A /* noimage.gif in Resources */,
-				DE8649E714E644E400328A9A /* DetailViewController.xib in Resources */,
 				DE8649EA14E644E400328A9A /* MasterViewController.xib in Resources */,
+				DE954C2514EE87AE004FE7FC /* EventViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,10 +313,12 @@
 				DE8649D514E6449400328A9A /* SBJsonWriter.m in Sources */,
 				DE8649E414E644E400328A9A /* AppDelegate.m in Sources */,
 				DE8649E514E644E400328A9A /* ArtistInfo.m in Sources */,
-				DE8649E614E644E400328A9A /* DetailViewController.m in Sources */,
 				DE8649E814E644E400328A9A /* LastFmAPI.m in Sources */,
 				DE8649E914E644E400328A9A /* MasterViewController.m in Sources */,
 				DE8649EB14E644E400328A9A /* UIApplication+Shortening.m in Sources */,
+				DE954C2414EE87AE004FE7FC /* EventViewController.m in Sources */,
+				DE2E2957150E193E00D4C7D9 /* EventInfo.m in Sources */,
+				DE2E295B150E233E00D4C7D9 /* InfoHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +422,7 @@
 				DE86496814E6401D00328A9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

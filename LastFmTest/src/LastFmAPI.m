@@ -9,6 +9,7 @@
 #import "LastFmAPI.h"
 #import "SBJson.h"
 #import "ArtistInfo.h"
+#import "EventInfo.h"
 
 @implementation LastFmAPI
 
@@ -16,14 +17,6 @@ static NSString *const API_KEY = @"6eed877e11ced65724a07ab6467df1f8";
 static NSString *const BASE_URL = @"http://ws.audioscrobbler.com/2.0/?method=%@&api_key=%@&format=json%@";
 
 #pragma mark - private method
-
-+ (void)debugOut:(id)obj 
-{
-    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    writer.humanReadable = YES;
-    writer.sortKeys = YES;
-    NSLog(@"%@", [writer stringWithObject:obj]);
-}
 
 + (NSURL *)createURL:(NSString *)method :(NSString *)parameter 
 {
@@ -54,6 +47,14 @@ static NSString *const BASE_URL = @"http://ws.audioscrobbler.com/2.0/?method=%@&
 }
 
 #pragma mark - public method
+
++ (void)debugOut:(id)obj 
+{
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    writer.humanReadable = YES;
+    writer.sortKeys = YES;
+    NSLog(@"%@", [writer stringWithObject:obj]);
+}
 
 + (NSArray *)searchArtists:(NSString*)keyword 
 {
@@ -86,7 +87,6 @@ static NSString *const BASE_URL = @"http://ws.audioscrobbler.com/2.0/?method=%@&
     return [ArtistInfo initWithInfoArray:[artistMatches objectForKey:@"artist"]];    
 }
 
-// 実装途中
 + (NSArray *)searchEvents:(NSString*)artistName 
 {
     NSString *escapeStr = [self percentEscape:artistName];
@@ -97,9 +97,25 @@ static NSString *const BASE_URL = @"http://ws.audioscrobbler.com/2.0/?method=%@&
         return nil;
     }
 
-    NSArray *events = [jsonData objectForKey:@"events"];    
+    NSDictionary *events = [jsonData objectForKey:@"events"];
+    
+    NSDictionary *hitInfo = [events objectForKey:@"@attr"];
+    int hitCount = [[hitInfo objectForKey:@"total"] intValue];
+    switch (hitCount) {
+        case 0:
+            return nil;
+            break;
+        case 1:
+        {
+            EventInfo* eventInfo =  [[EventInfo alloc] initWithInfo:[events objectForKey:@"event"]];     
+            return [[NSArray alloc] initWithObjects:eventInfo, nil];
+        }
+            break;
+        default:
+            break;
+    }
 
-    return events;
+    return [EventInfo initWithInfoArray:[events objectForKey:@"event"]];    
 }
 
 @end

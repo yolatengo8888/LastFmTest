@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface InfoHelper : NSObject
+typedef id (^InitBlock)(NSDictionary* item);
 
+@interface InfoHelper : NSObject
++ (NSArray *)initWithInfoArray:(NSArray *)eventInfoes :(InitBlock) initBlock;
 @end

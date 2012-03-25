@@ -7,6 +7,7 @@
 //
 
 #import "ArtistInfo.h"
+#import "InfoHelper.h"
 
 @implementation ArtistInfo
 
@@ -26,15 +27,10 @@
 
 + (NSArray *)initWithInfoArray:(NSArray *)artistInfoes 
 {
-    NSMutableArray *retArray = [[NSMutableArray alloc] init];
-    
-    NSEnumerator* enumLink = [artistInfoes objectEnumerator];
-    NSDictionary* item;
-    while (item = (NSDictionary*)[enumLink nextObject]) {
-        [retArray addObject:[[ArtistInfo alloc] initWithInfo:item]];
-    }
-    
-    return retArray;
+    return [InfoHelper initWithInfoArray:artistInfoes 
+                                        :^(NSDictionary *item) {
+                                            return [[ArtistInfo alloc] initWithInfo:item];
+                                        }];
 }
 
 - (id)initWithInfo:(NSDictionary *)artistInfo 

@@ -2,50 +2,157 @@
 //  EventViewController.m
 //  LastFmTest
 //
-//  Created by tjfmf812 on 12/02/17.
+//  Created by tjfmf812 on 12/02/25.
 //  Copyright (c) 2012年 @yolatengo8888. All rights reserved.
 //
 
+#import <Twitter/TWTweetComposeViewController.h>
+
 #import "EventViewController.h"
+#import "ArtistInfo.h"
+#import "LastFmAPI.h"
+#import "EventInfo.h"
+#import "UIApplication+Shortening.h"
 
 @implementation EventViewController
+
+@synthesize artistInfo = _artistInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - call api
+
+- (void)searchEvents:(NSString *)artistName 
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+    _events = [LastFmAPI searchEvents:artistName];
     
-    // Release any cached data, images, etc that aren't in use.
+    UITableView *tableView = (UITableView *)self.view;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;    
+    [tableView reloadData];
+    
+    [UIApplication showIndicator:NO];
+}
+
+#pragma mark - twitter
+
+- (void)tweet:(NSString *)text
+{
+    TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
+    [twitter setInitialText:text];
+    [self presentModalViewController:twitter animated:YES];
+    
+    twitter.completionHandler = ^(TWTweetComposeViewControllerResult result) {
+        switch (result)
+        {
+            case TWTweetComposeViewControllerResultDone:
+            {
+                NSString *message = @"ツイートしました.";
+                UIAlertView *alert = [[UIAlertView alloc]  initWithTitle:@"ツイート完了" 
+                                                                 message:message
+                                                                 delegate:nil 
+                                                        cancelButtonTitle:@"OK" 
+                                                        otherButtonTitles:nil];
+                [alert show];
+                break;
+            }
+            default:
+                break;
+        }
+        [self dismissModalViewControllerAnimated:YES];
+    };
+}
+
+#pragma mark - View configure
+
+- (void)cofigureViewMain 
+{
+    self.title = _artistInfo.name;
+    [self searchEvents:_artistInfo.name];
+    
+    [UIApplication showIndicator:NO];        
+}
+
+- (void)configureView
+{
+    if (_artistInfo) {
+        [UIApplication showIndicator:YES];        
+        [self performSelectorInBackground:@selector(cofigureViewMain) withObject:nil];
+    }
 }
 
 #pragma mark - View lifecycle
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self configureView];
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    _events = nil;
 }
 
-- (void)viewDidUnload
+#pragma mark - TableView
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    return 1;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    if (!_events) {
+        return 0;
+    }
+
+    return [_events count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 88.0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.detailTextLabel.numberOfLines = 3; 
+    }
+    
+    EventInfo* eventInfo = [_events objectAtIndex:indexPath.row];
+    cell.textLabel.text = eventInfo.title;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\nat %@(%@ %@)", 
+                                 eventInfo.startDate, 
+                                 eventInfo.venueName,
+                                 eventInfo.city,
+                                 eventInfo.street];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    EventInfo *eventInfo = [_events objectAtIndex:indexPath.row];
+    NSString *tweetText = [NSString stringWithFormat:@"%@ / %@ at %@(%@ %@) %@", 
+                           eventInfo.title,
+                           eventInfo.startDate, 
+                           eventInfo.venueName,
+                           eventInfo.city,
+                           eventInfo.street,
+                           eventInfo.url];
+    
+    [self tweet:tweetText];
 }
 
 @end

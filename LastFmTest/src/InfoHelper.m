@@ -10,4 +10,18 @@
 
 @implementation InfoHelper
 
++ (NSArray *)initWithInfoArray:(NSArray *)eventInfoes :(InitBlock) initBlock
+{
+    NSMutableArray *retArray = [[NSMutableArray alloc] init];
+    
+    NSEnumerator* enumLink = [eventInfoes objectEnumerator];
+    NSDictionary* item;
+    while (item = (NSDictionary*)[enumLink nextObject]) {
+        id obj = initBlock(item);
+        [retArray addObject:obj];
+    }
+    
+    return retArray;
+}
+
 @end

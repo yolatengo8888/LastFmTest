@@ -11,4 +11,5 @@
 @interface LastFmAPI : NSObject
 + (NSArray *)searchArtists:(NSString*)keyword;
 + (NSArray *)searchEvents:(NSString*)artistName;
++ (void)debugOut:(id)obj;
 @end
