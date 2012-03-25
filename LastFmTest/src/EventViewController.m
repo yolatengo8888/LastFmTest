@@ -141,18 +141,29 @@
     return cell;
 }
 
+const int TWEET_MAX_LENGTH = 140;
+const int T_CO_URL_LENGTH = 20;
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{    
     EventInfo *eventInfo = [_events objectAtIndex:indexPath.row];
-    NSString *tweetText = [NSString stringWithFormat:@"%@ / %@ at %@(%@ %@) %@", 
+    NSString *tweetText = [NSString stringWithFormat:@"%@ / %@ at %@(%@ %@)", 
                            eventInfo.title,
                            eventInfo.startDate, 
                            eventInfo.venueName,
                            eventInfo.city,
-                           eventInfo.street,
-                           eventInfo.url];
+                           eventInfo.street];
+    // +1はスペース１文字
+    if (tweetText.length + T_CO_URL_LENGTH + 1 > TWEET_MAX_LENGTH) {
+        // 140文字を超えるときは住所を省略
+        tweetText = [NSString stringWithFormat:@"%@ / %@ at %@(%@)", 
+                               eventInfo.title,
+                               eventInfo.startDate, 
+                               eventInfo.venueName,
+                               eventInfo.city];
+    }
     
-    [self tweet:tweetText];
+    [self tweet:[NSString stringWithFormat:@"%@ %@", tweetText, eventInfo.url]];
 }
 
 @end
