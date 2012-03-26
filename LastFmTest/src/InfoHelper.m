@@ -2,7 +2,7 @@
 //  InfoHelper.m
 //  LastFmTest
 //
-//  Created by tjfmf812 on 12/03/12.
+//  Created by yolatengo8888 on 12/03/12.
 //  Copyright (c) 2012年 @yolatengo8888. All rights reserved.
 //
 

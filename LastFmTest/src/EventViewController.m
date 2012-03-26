@@ -2,7 +2,7 @@
 //  EventViewController.m
 //  LastFmTest
 //
-//  Created by tjfmf812 on 12/02/25.
+//  Created by yolatengo8888 on 12/02/25.
 //  Copyright (c) 2012年 @yolatengo8888. All rights reserved.
 //
 
